@@ -6,7 +6,7 @@
  *       of Harvard's EdX CS50 React Native course.
  */
 
-import "./styles.css";
+import "./todo.css";
 import { useState } from "react";
 import ControlPanel from "./ControlPanel.js";
 import TaskList from "./TaskList.js";
@@ -40,11 +40,11 @@ export default function TodoApp() {
     setTodos(todos.filter((t) => t.uid !== todoUid));
   }
 
-  function Count({ label, num }) {
+  function Count({ name, num }) {
     return (
       <span class="count">
-        {" "}
-        {label}: {num}{" "}
+        <label>{name}:</label> 
+        {num}
       </span>
     );
   }
@@ -53,12 +53,18 @@ export default function TodoApp() {
     <>
       <h1>Todo App (Modular)</h1>
       <h2>App State</h2>
-      <div class="state">{JSON.stringify({ todos: todos }, null, 2)}</div>
+      <div class="state">
+        <label>todos:</label>
+        {JSON.stringify(todos)}
+      </div>
       <h2>UI</h2>
       <div class="ui">
-        <Count label="tasks" num={todos.length} />
-        <Count label="unchecked" num={todos.filter((t) => !t.done).length} />
-        <ControlPanel onAddTodo={handleAddTodo} />
+        <div>
+          <Count name="tasks" num={todos.length} />
+          <Count name="unchecked" num={todos.filter((t) => !t.done).length} />
+        </div>
+        <ControlPanel onAddTodo={handleAddTodo}/>
+        <h3>Todo Items</h3>
         <TaskList
           todos={todos}
           onChangeTodo={handleChangeTodo}

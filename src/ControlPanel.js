@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-export default function ContolPanel({ onAddTodo }) {
+export default function ControlPanel({ onAddTodo }) {
   const [newItem, setNewItem] = useState("");
   return (
     <div>
       <div class="controls">
+        <h3>Controls state</h3>
         <div class="state">
-          <h2>Controls state</h2>
-          {JSON.stringify({ newItem: newItem })}
+          <label>newItem:</label>
+          {JSON.stringify(newItem)}
         </div>
         <input
           placeholder="Add todo"
